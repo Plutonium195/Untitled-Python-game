@@ -1,0 +1,20 @@
+{
+    "name": "Bungus",
+    "health": 19,
+    "maxHealth": 20,
+    "strength": 41,
+    "strengthExp": 207,
+    "strengthExpMax": 225,
+    "agility": 1,
+    "agilityExp": 0,
+    "agilityExpMax": 20,
+    "constitution": 1,
+    "constitutionExp": 0,
+    "constitutionExpMax": 20,
+    "intelligence": 1,
+    "intelligenceExp": 0,
+    "intelligenceExpMax": 20,
+    "wisdom": 1,
+    "wisdomExp": 0,
+    "wisdomExpMax": 20
+}

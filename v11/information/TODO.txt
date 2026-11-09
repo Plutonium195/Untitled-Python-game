@@ -1,0 +1,7 @@
+==========
+TO DO LIST
+==========
+[ ] - implement a modular structure for displaying description text
+[√]] - move player stats functions into a class in a separate file
+[√] - implement a random song choice for title and general gameplay so the same song is not playing over and over
+[ ] - implement a way to animate the static images

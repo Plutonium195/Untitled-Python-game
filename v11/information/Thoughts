@@ -1,0 +1,66 @@
+==========
+STORY
+==========
+>10 towns to visit: Point Garmsby, Ledgetown, Northwards, Bamburgh, Pendle, Tarrin, Tamworth, Saxondale, Dunwhich, Squall's End.
+	>Complexity increases as player advances through towns/moves south. 
+	>Increasing difficulty manifests as less civiliazation, becoming more fortified and more wild
+
+==========
+MECHANICS
+==========
+
+> Classes
+
+	> Martial
+	> Spellcaster
+
+> Each character level provides a point to put in any stat
+> Stats: 
+	> Strength 
+	> Agility
+	> Constitution
+	> Intelligence
+	> Wisdom
+
+> Player cant pass a specified level cap at each difficulty area (exponential?)
+> Enemy stats scales to area difficulty (assigned to towns)
+> Dungeon Mechanic, location on the map, more levels are acsessable in higher difficulty areas
+	> Player cant acsess the deeper levels until they reach certain stats/levels
+> Doing things provides minor exp for a stat level, but provides major exp towards charater level
+
+	> Fighting
+		> Major exp is the individual monster exp value
+		> If fight ends early, minor exp = (monster exp value / 3) - (the remaining health of the enemy as a percentage)
+		> Provides minor exp to Strength = (monster exp value / 3)
+		> If class is spellcaster provides minor exp to Intelligence instead of strength = (monster exp value / 3)
+
+		> Checks for class
+			> loop, while (player != dead or run) or (enemy != dead or run)
+			> Introduces enemy name and health
+			> Offers the class appropriate heal and attack option or option to run
+				> If option = heal
+					> 
+
+
+	> Foraging / Fishing
+		> Major exp = forage item exp value
+		> Minor exp = (forage item exp value / 3)
+		> Random split of minor exp provided to Dexterity and Wisdom
+	
+	> Hunting
+		> Major exp = hunting target exp value (based on animal rarity or exp value)
+		> Minor exp = (hunting target exp value / 3)
+		> Minor exp is split randomly between Dexterity and Wisdom (weighted towards dexterity)
+
+	> Cooking
+		> Major exp = combined food cook exp value (perhaps the health it provides)
+		> Minor exp = Wisdom level / 10
+		> Minor exp is split randomly between Intelligence and Wisdom (weighted towards Wisdom)
+
+
+
+==========
+AESTHETICS
+==========
+>Rudimentary UI with pygame: Include text descriptions, static image for each location, stats and info in corner (img001)
+>UI colour palette (deprecated): background:454545 text:F5DFBB contrast1:6D5959, contrast2:F2542D contrast3:0E9594

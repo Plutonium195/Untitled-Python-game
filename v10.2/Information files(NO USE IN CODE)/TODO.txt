@@ -1,0 +1,31 @@
+#----->TO DO
+#- [ ] Write and implement a basic story/quest for the game
+#- [√] Trial an 'input only' style of game, where the player's function options are restricted to prevent them from accessing dev tools
+#- [√] Rebuild combat as mini-module 
+#- [√] Better combat stat mechanics
+#- [√] Add armor/blacksmith
+#- [√] Add fishing bait to shop list 
+#- [√] Set up level increase
+#- [√] Make hunting function
+#- [√] Levels influence activities
+#- [√] Design map/destination
+#- [√] Make destination functionality
+#- [√] Design save/load system (pipe dream)
+#- [√] Restrict activities based on equipment/location
+#- [ ] Rework loot tables for all functions to have better rarity
+#- [ ] Add usage for every item in every loot table
+#- [√] Add a cook that takes food items and combines them to make dishes that add to health
+#- [ ] Add a npc that will take scrap metal and any other items that could be used and turns it into useful things, i.e. blacksmith
+#- [√] Player hp and level will increase after grinding
+#- [√] Enemy difficulty is affected by player lvl
+#- [√] Make some kind of equipment menu to equip weapons and armor
+#- [√] Fix cook() so that only food items can be cooked; and so that every dish isn't printed as fish soup
+#- [ ] Add dungeon for more exploration and loot as well as challange players with fighting enemies
+#- [ ] Add apothacary for a specilised shop for healing and if spell will be added somthing to do with that
+#- [ ] Decrease the global sell cost of all items so gold is less common
+#- [√] Revamp gamble so you dont win as often, like a 1/4 win/lose rate
+#- [ ] Make blacksmith shop lists vary depending on location
+#- [ ] Move more functions to separate files, using def class function:
+#- [√] Fix the errors with the inventory and functions not properly linking up 
+#- [ ] Add the new inv append functionality to all functions
+#- [ ] 

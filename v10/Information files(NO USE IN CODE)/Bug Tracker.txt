@@ -1,0 +1,26 @@
+
+===================
+Unidentified
+------------
+- There seems to be a large number of problems within playerData.py, which are the root of some other problems within the code, it might be better to rework playerData.py in some way to make it easier to write the data saved within the file
+
+- Mysterious bug in fight() at starting at line 484: despite armorequip apparently being correctly assigned as 'Nothing', the corresponding if statement does not trigger correctly and armorindex is never assigned - Have created a temporary workaround by arbitrarily assigning armorindex as 0 if nothing else triggers. Possibly some kind of syntax error?
+
+===================
+Unresolved
+------------
+- Current save/load function does not update equipment slots within playerData.py leading to duplicated tools and weapons when loading slot 1. POTENTIAL FIX: Update the load function to write the correct equipment states without overwriting the rest of playerData.py
+
+- Shop sell menu does not update inventory display after a sale, despite updating gold and removing the item, double check if overwriting inventory.txt is orking correctly 
+
+- fighting a bear inside forage() does not update playerhp after the fight, try implementing parameters from fight() into forage()
+
+- cook() will remove all cookable items from inventory and not return a dish
+
+===================
+Resolved
+------------
+- Sell menu within shop does not correctly read player inventory, leading to items being unable to be sold
+
+- Fight function keeps returning an error saying that it can’t access the player’s equipped weapons and armour
+	Fix: Just need to remember to add the global variable to the start of the function

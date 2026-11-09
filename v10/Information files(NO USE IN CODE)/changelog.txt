@@ -1,0 +1,191 @@
+PYTHON GAME CHANGE LOG
+
+
+#-Changelog v6.1
+#-> Added comments to def start() with possible additions
+#-> Added things to TO DO list
+#-> Ticked off a few things on TO DO list
+#-> Added a new shoplist (shoplist2)
+#-> Added food health values
+#-> Updated checklevel() into all of gamble()
+#-> Added playerlvl to start(), checklvl() and stats()
+#-> Player hp and level will increase after grinding
+#-> Added debugLevelUpAllSkills()
+#-> Added debug tracker
+#-> Bugfixed debug tracker
+#-> Changed goblin health to 3
+#-> Changed enemy health, base damage and base armor to be afftected by player level
+#-> Enemy armor mod now affects its damage taken (damage threshold effectivly)
+#-> Bugfixed playerlvl and damage threshold
+
+
+#-Changelog v6.2
+#-> Fixed title of TO DO list
+#-> Added contents of shoplist2 to globalcost
+#-> Changed playerlvl modifier on enemy stats from * to +
+
+
+#-Changelog v6.3
+#-> Minor bugfixes for shop lists
+#-> Fixes grammatical errors in gamble, fish and travel functions
+#-> Discovered new bug: Roulette and blackjack remain unplayable no matter which town is set as currentdestination. Temporarily disabled destination checking
+#-> Added suits to blackjack and displayed hand before bust
+#-> Prevented playing slots with more money than owned
+#-> Tweaked the combat function to be usable inside other functions or by typing fight('[enemy name here]')
+#-> added gameover() function - when called, displays GAME OVER ('Bloody' font) then restarts the game
+#-> Changed game name to GAME NAME and changed the font to 'Delta Corps Priest 1' on http://patorjk.com/software/taag/
+
+
+#-Changelog v6.4
+#-> Moved unnecessary items out of start()
+#-> Forage chance is now affected by forage skill level instead of luck
+#-> Shop menu is affected by current destination
+
+
+#-Changelog v6.5
+#-> Added cook function
+#-> Orderded all functions except for start() load() map() and gameover() in alphabetical order
+#-> Dishes created by cook() function have a use in the fight() function
+
+
+#-Changelog v6.6
+#-> What if the name had somthing to do with the name? - my cousin
+#-> Added credits to gameover() function 
+#-> Added charname, player can now name their charecter at start of game
+
+
+#-Changelog v6.7
+#-> Added tool to equipment function with its appropriate lists
+#-> Fixed bug with tool in equipment fuction, after tool is equipped, doesn't show up
+#-> Removed unessesary enemyarmor from player dmg
+#-> Added main weapon has fuction in combat
+#-> Fixed all problems adding main weapon combat
+#-> Note: player will now have to equip weapon before combat otherwise error appears
+#-> Added currently useless enemy difficulty, scale up in difficulty with 1 being oneshot and it gets harder and harder
+#-> Added 2 more tool slots
+#-> Changed defining enemy stats at the start of fight to use combat lvl not player lvl
+#-> Fixed bug with unequiped main weapons not working
+#-> Added armor has fuction in combat
+#-> Fixed all problems created by adding armor to combat
+
+
+#-Changelog v6.8
+#-> Wrote an introduction that incorporates charname
+#-> Built and tested a limited input only system to control player inputs (currently commented out)
+#-> Removed the word 'Current' from equipment menu layout so as to fit better within the menu box
+
+
+#-Changelog v7.0
+#-> Finally added hunt() function
+
+
+#-Changelog v7.1
+#-> Fixed bug where fighting enemys wont give xp
+#-> Fixed bug in hunt so the loop now is functional
+#-> Added 2 thing to the bottom of the to do list
+#-> Fixed fishing bug with sack of gold
+
+
+#-Changelog v7.2
+#-> Deleted enemylootlist as it was unessesary
+#-> Added smithlist
+#-> Added 2 things to the bottom of to do list
+#-> Added plate to armorlist
+#-> Added playerscrap
+
+
+#-Changelog v8.0
+#-> Added save / load functions that uses library pickle
+#-> Added to the bottom so the code is more easily seen as a group
+
+
+#-Changelog v8.1
+#-> Finished blacksmith
+#-> Added somthing to bottom of To Do list
+
+
+#-Changelog v8.2
+#-> Now import datetime
+#-> Multipule save slots
+#-> Save slots now display time last modified
+
+
+#Changelog v8.3
+#-> Incomplete bugfixes to blacksmith and other functions
+
+
+#-Changelog v8.4
+#-> Revammped save() to work on other computers
+#-> Added global filedirect to bottom of file
+#-> Redid the chance of gamble
+#-> Added so the game asks the location of the savefiles
+
+
+#-Changelog v8.5
+#-> Gold now works fine was just a language error not a code error
+#-> Added more items to blacksmith and locaition sort of affects blacksmith shop list
+#-> Added a bear trap to hunt() function, max distance for an animal -2 when trap is laid
+#-> Bear trap was causing to much grief so disabled it fo now, it still can be bought but has no function
+#-> Location no longer affects balcksmith lists
+#->.Doubled deck size for blackjack
+#-> Now 1 in 100000 chance to hit jackpot in roulette as well a lower chances of winning overall for roulette
+#-> Fully revamped gamble for all games to be less chance of winning
+
+
+#-Changelog v9.0
+#-> Fixed some minor grammatical errors in NPC interactions
+#-> Created lists of enemies for each floor of the dungeons
+#-> Altered formatting for stats() to properly centre charname no matter how many characters long it is
+
+
+#-Changelog v9.1
+#-> started work on townhall but still very rudimentary
+
+
+#-Changelog v9.2
+#-> Moved playerscrap up below gold to easily find it
+#-> Edited the save and load functions to be completely functional on the condition that the savefiles have be premade and are in the same folder
+#-> Input only is now fully functional, all new interactable functions must be added to the dictionary
+#-> Editied credits
+#-> Began work on a quest function in the townhall 
+#-> Began work on more functions for townhall, now can go to a training ground
+#-> Having problems with community noctice with list indexes out of range
+#-> Fixed it and now comminity board will have multipule notices
+#-> The notice board has multipule outcomes but havent figured out how to get it to iterate multipule times without using a while loop, I may have to.
+#-> Trying to figure out how to make it so the board won't display the same message twice
+#-> Comm Board wont display the same message twice by keeping track of the previously displayed messages.
+#-> Found bug in forage that if you encounter a bear and dont input a correct input the loop ends
+#-> Added custom error messages in fight for certain areas to help in locating the error
+#-> Fixed the fight error by implementing a while-true loop 
+#-> Found bug in fight where if you try to eat a dish if you don't have one then it gives an error
+#-> Realised hunt is not in the inout loop so I added it
+#-> Made the introduction have an > for the input line
+#-> Fixed bug where attempting to heal in a fight with no healables would raise an error
+#-> Adjusted random roll on fishlist so as to avoid an error when rolling a sack of gold in fishing
+
+
+#-Changelog v10
+#-> NEW FILE SYSTEM LETS GOOOOOOOOOOOO
+#-> Google drive now reserved as an archive for old versions as we are sharing the main folder and can work semi-simultaneously on files
+#-> Changelog and TODO lists are now seperate files to clean up the main file
+#-> Started moving functions and variables into new files and organising/linking up them all to the main file
+#-> Now have a data files for enemyData, playerData and gameData
+#-> Savefiles now have a folder
+#-> Using forage as a dummy file to practice the moving of functions into seperate files.
+#-> Learned how to use classes in regards to the moving of functions
+#-> To use a class for the functions in different files just write: class (class name): then tab in to start defining different functions, this means you can define multiple functions in a given class, when calling a function make sure to define the class first, e.g. Player.movement
+#-> If you see a pycache folder/file don't worry, it is just there for very limited optimisation and is sometimes automatically generated/updated from any new files
+#-> Fixed error where selling an item would not remove it from your inventory
+#-> Inventory is now properly restored when loading an existing save
+#-> Inventory won't save any items found or gathered
+#-> In an effort to combat the above problems, inventory has been moved to a separate file in the data folder
+#-> Inventory is now a .txt file to help with saving and loading of the inventory
+#-> The above problems have now been fixed (mostly)
+#-> Added some stuff to the TODO list
+#-> Made a new folder for all code for testing and reminders as well as changelog and TODO list for the sake of cleaning up the folder even more
+#-> Bug patching to ensure proper compatibility with pre-existing code and new inventory system
+#-> Updated save() and load() functions so now should run slightly more efficiently and added so flavor text for it
+#-> Resolved some minor but debilitating errors in fight
+#-> Fixed some minor bugs preventing playerhp from updating after a fight
+#-> fight() now properly updates player stats and correctly runs checklevel() afterwards
+#-> 

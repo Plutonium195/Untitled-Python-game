@@ -1,0 +1,52 @@
+
+===27/2/26===
+- updated playerData to be a JSON file, and changed file loading and saving in main.py to match
+- added new functions to main.py:
+      - jsonDump() is just a way to save space when dumping to json file elsewhere in code
+      - loadPlayerDataText() is called whenever playerData changes and the display needs to be updated accordingly
+- updated openFile() in assestLoader to also take the file mode as an input, e.g. "r" for read mode
+- added more comments to various parts of code
+
+===28/2/26===
+- added agility and strength stats to playerData, along with corresponding display
+- changed test background to something more like what final images will look like
+- added equipment.json and began implementation of equipment menu in-game
+- added settings button - currently sends to empty settings screen
+- merged all backButtons into one backButton variable - reusable
+- created equipment.py as functions for displaying equipment text and buttons
+
+- added the rest of player stats and reworked display to be a bar, could change in the future (might be too big)
+- display player stats through drawAllStats(screen, player):
+- added debugUpStatButton and debugDownStatButton to test stat changes
+- statChange(player, statExp, amount) used now to increase stats and level up
+- stat bars now smoothly transition on increase or decrease
+- File "main copy" should be used to experiment any changes before final save to ensure no data is lost, copy paste over when finished
+- Next want to try animating the test background image 
+
+===1/3/26===
+- added a stat level up sound "levelUp.mp3", most likely will change sound, currently for testing
+- fixed out of bound issues with stat bars
+- fixed error where reaching the exact amount of exp wont level up stat
+- reduced the exp cap scaling 
+- stat increases now only increase in intergers rather than floats
+
+- fixed so that health stays between 0 and maxHealth (temporary)
+
+- added some title & alive screen music, easy to copy paste around to different sections so can be used pretty much anywhere
+- want to make a table of songs that it can play so not all the same
+- health change now uses similar function to stat change
+- when health = 0, gamestate now = 'dead' and game quits
+
+===2/3/26===
+- now when gamestate = 'dead', displays game over screen and offers a restart button
+- equipment functions have been merged into a class for ease of use
+- moved all playerStats functions into a separate file for better readability
+- moved color definitions into assetLoader.py with fonts
+
+- tracks now repeat when one ends allowing for multi track playlists
+- credits screen, acsessable from death screen, need to make look good
+
+===5/3/25===
+- removed the .json tag to a lot of the calls for the playerdata file as it ended up generating 2 seperate files that updated differently
+- added a loop in the surface definitions for animated images, testing with a green gem. comments denote where they are, easy to disable 
+      cmd f "(GIF)" to find all places where changes were made

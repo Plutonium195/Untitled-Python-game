@@ -1,0 +1,4 @@
+===============
+BUG TRACKER
+===============
+- player stat display will go beyond bounds at around str level 60 (~6100 exp earned)
