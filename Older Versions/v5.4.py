@@ -1,0 +1,427 @@
+#----->TO D’
+#- [ ] Rebuild combat as semi module 
+#- [ ] Better combat stat mechanics
+#- [√] Add fishing bait to shop list 
+#- [ ] Set up level increase
+#- [ ] Make hunting function
+#- [ ] Levels influence activities
+#- [ ] Design map/destination
+#- [ ] Design save/load system
+#- [ ] Restrict activities based on equipment/location
+
+
+
+
+
+
+#in terminal, run <pip install clrprint>
+
+from clrprint import *
+
+globalcost = [['sharpened sword',25],['basic sword',10],['basic crossbow',10],['basic fishing rod',10],['berries',1],['wild mushrooms',1],['eggs',1],['healing herbs',3],['snapper',4],['salmon',4]
+              ,['bass',4],['trout',4],['old boot',1],['scrap metal',1],['tuna',8],['healing potion',6],['fishing bait',5]]
+
+def start():
+    global math
+    import math
+    global time
+    import time
+    global random
+    import random
+    global playerhp
+    global playerhpmax
+    playerhp = 20
+    playerhpmax = 20
+    global gold
+    gold = 10
+    global inv
+    inv = ['basic sword', 'basic crossbow', 'basic fishing rod']
+    global combat
+    global combatxp
+    global combatmax
+    combat = 1
+    combatxp = 0
+    combatmax = 10
+    global hunting
+    global huntingxp
+    global huntingmax
+    hunting = 1
+    huntingxp = 0
+    huntingmax = 10
+    global foraging
+    global foragingxp
+    global foragingmax
+    foraging = 1
+    foragingxp = 0
+    foragingmax = 10
+    global fishing
+    global fishingxp
+    global fishingmax
+    fishing = 1
+    fishingxp = 0
+    fishingmax = 10
+    global luck
+    global luckxp
+    global luckmax
+    luck = 1
+    luckxp = 0
+    luckmax = 10
+    global enemylootlist
+    enemylootlist = ['a rusty sword','some rotten food','an empty money sack','a empty envelope from their family','a trout','an old boot','some scrap metal','a sack of marbles']
+    global foragelist
+    foragelist = ['some berries','some wild mushrooms','a nest of eggs','some healing herbs']
+    global fishlist
+    fishlist = ['a snapper','a snapper','a snapper','a snapper','a salmon','a salmon','a salmon','a salmon','a bass',
+    'a bass','a bass','a bass','a trout','a trout','a trout','a trout','an old boot','an old boot','some scrap metal','some scrap metal','a tuna','a tuna','a sack of gold']
+    global shoplist
+    shoplist = [['sharpened sword',30],['basic fishing rod', 12],['healing potion',8],['fishing bait',5]]
+
+def checklevel():
+    global combat
+    global combatxp
+    global combatmax
+    while combatxp >= combatmax:
+        combatxp -= combatmax
+        combat += 1
+        combatmax += 5
+        clrprint('Your combat skill is now level',str(combat)+'!',clr='g')
+    global hunting
+    global huntingxp
+    global huntingmax
+    while huntingxp >= huntingmax:
+        huntingxp -= huntingmax
+        hunting += 1
+        huntingmax += 5
+    global foraging
+    global foragingxp
+    global foragingmax
+    while foragingxp >= foragingmax:
+        foragingxp -= foragingmax
+        foraging += 1
+        foragingmax += 5
+    global fishing
+    global fishingxp
+    global fishingmax
+    while fishingxp >= fishingmax:
+        fishingxp -= fishingmax
+        fishing += 1
+        fishingmax += 5
+    global luck
+    global luckxp
+    global luckmax
+    while luckxp >= luckmax:
+        luckxp -= luckmax
+        luck += 1
+        luckmax += 5
+    
+
+def debugGiveStick():
+    inv.append('Test Stick')
+
+def inventory():
+    clrprint('\n<==========INVENTORY==========>',clr='default')
+    global inv
+    clrprint('+ ',str(gold),'gold',clr='d,r')
+    for x in inv:
+        clrprint('+ ',x,clr='d,r')
+    clrprint('<=============================>',clr='default')
+
+def stats():
+    checklevel()
+    clrprint('\n<==========CHARACTER==========>',clr='d')
+    clrprint('+','Current Health : '+str(playerhp)+'/'+str(playerhpmax),clr='r,y')
+    clrprint('+','Combat level : '+str(combat),clr='red')
+    clrprint('+','» Level progress : '+str(combatxp)+'/'+str(combatmax),clr='r,p')
+    clrprint('+','Hunting level : '+str(hunting),clr='red')
+    clrprint('+','» Level progress : '+str(huntingxp)+'/'+str(huntingmax),clr='r,p')
+    clrprint('+','Foraging level : '+str(foraging),clr='red')
+    clrprint('+','» Level progress : '+str(foragingxp)+'/'+str(foragingmax),clr='r,p')
+    clrprint('+','Fishing level : '+str(fishing),clr='red')
+    clrprint('+','» Level progress : '+str(fishingxp)+'/'+str(fishingmax),clr='r,p')
+    clrprint('+','Luck level : '+str(luck),clr='red')
+    clrprint('+','» Level progress : '+str(luckxp)+'/'+str(luckmax),clr='r,p')
+    clrprint('<=============================>',clr='d')
+
+def gamble(amount):
+    global luck
+    global luckxp
+    global gold
+    import random
+    import math
+    if amount > gold:
+        clrprint("You don't have that much money!",clr='r')
+    else:
+        gold = gold - amount
+        choice = input('Red or Black?\n')
+        choice = choice.strip()
+        choice = choice.lower()
+        jackpotchance = 1
+        if random.randint(1, 10000) <= 1*luck:
+            clrprint('You hit the jackpot!',clr='y')
+            clrprint('You won ' + str(amount*100) + ' gold',clr='y')
+            luck = luck + 1
+            gold += amount*100
+            checklevel()
+        elif random.randint(1, 10000) > 3000:
+            if choice == 'red':
+                clrprint('It landed on red and you won ' + str(amount*2) + ' gold!',clr='g')
+                luckxp = luckxp + random.randint(1,5)
+                gold += amount*2
+                checklevel()
+            elif choice == 'black':
+                clrprint('It landed on red and you lost!',clr='r')
+        elif random.randint(1, 10000) < 3000:
+            if choice == 'black':
+                clrprint('It landed on black and you won ' + str(amount*3) + ' gold!',clr='g')
+                luckxp = luckxp + random.randint(1,5)
+                gold += amount*3
+                checklevel()
+            elif choice == 'red':
+                clrprint('It landed on black and you lost!',clr='r')
+        else:
+            clrprint('You lost! :(',clr='r')
+
+def forage():
+    global luck
+    global foragingxp
+    clrprint('You wander through the forest...',clr='d')
+    time.sleep(1)
+    foragechance = random.randint(1,30)*math.ceil(luck/4)
+    forageresult = foragelist[random.randint(0,3)]
+    if foragechance > 15:
+        clrprint('After searching for a while, you find '+forageresult+'!',clr='d')
+        if forageresult == 'a nest of eggs':
+            forageresult = 'some eggs'
+            cut = forageresult.index(' ') + 1
+            inv.append(forageresult[cut:])
+            foragingxp += random.randint(1,4)
+            checklevel()
+        else:
+            cut = forageresult.index(' ') + 1
+            inv.append(forageresult[cut:])
+            foragingxp += random.rantint(1,4)
+            checklevel()
+    else:
+        clrprint('After searching for a while, you find nothing.',clr='d')
+
+def fish():
+    global gold
+    global inv
+    global fishlist
+    global luck
+    global fishingxp
+    baitmod = 1
+
+    if 'basic fishing rod' in inv:
+        clrprint('You find a lake surrounded by trees with a small jetty in front of you',clr='d')
+        time.sleep(1)
+        if 'fishing bait' in inv:
+            bait = input('Would you like to use some bait?\n')
+            bait = bait.strip()
+            bait = bait.lower()
+            if bait == 'yes':
+                baitmod = 2
+        clrprint('You sit down on the jetty and cast your lure...',clr='d')
+        time.sleep(1)
+        fishchance = random.randint(1, 30) * math.ceil(luck/4) * baitmod
+        fishoutcome = fishlist[random.randint(0,22)]
+        if fishchance > 20:
+            if fishoutcome == 'a sack of gold!':
+                gold += 10
+                clrprint('You found' + str(fishoutcome)+ ' and gained 10 gold!',clr='d')
+                fishingxp += 3
+                checklevel()
+            else:
+                clrprint('You found ' + str(fishoutcome)+'!',clr='d')
+                fishoutcome = fishoutcome.strip()
+                cut = fishoutcome.index(' ') + 1
+                inv.append(fishoutcome[cut:])
+                fishingxp += random.randint(1,2)
+                checklevel()
+        else:
+            clrprint('You caught nothing.',clr='d')
+    else:
+        clrprint('You dont have the adequate equipment to do this!',clr='d')
+
+            
+def shop():
+    global gold
+    global shoplist
+    clrprint('The merchant greets you, and displays his wares...',clr='d')
+    time.sleep(0.5)
+    bors = input('Here to buy or sell?\n')
+    bors = bors.strip()
+    bors = bors.lower()
+    if 'buy' in bors:
+        buying = None
+        while buying != 0:
+            clrprint('<=============SHOP============>',clr='d')
+            tlist = [item[0] for item in shoplist]
+            clist = [item[1] for item in shoplist]
+            printlist = zip(tlist,clist)
+            clrprint('Cost / Item',clr='d')
+            for x in printlist:
+                clrprint('{:4}{:10}'.format(x[1],'  '+x[0]),clr='r')
+            clrprint('<=============================>',clr='d')
+            buyitem = input('What would you like to purchase?\n')
+            buyitem = buyitem.strip()
+            buyitem = buyitem.lower()
+            if len(buyitem) == 0:
+                buying = 0
+            else:
+                for item in tlist:
+                    if buyitem in item:
+                        buyitem = item
+                for sublist in shoplist:
+                    if buyitem in sublist:
+                        buycost = shoplist.index(sublist)
+                        if shoplist[buycost][1] <= gold:
+                            inv.append(buyitem)
+                            gold -= shoplist[buycost][1]
+                            clrprint('Purchased',buyitem,'for',str(shoplist[buycost][1]),'gold',clr='g')
+                            shopagain = input('Would you like to buy anything else? (y/n)\n')
+                            shopagain.strip()
+                            shopagain.lower()
+                            if 'n' in shopagain:
+                                buying = 0
+                                break
+                        else:
+                            clrprint('You don\'t have enough gold!',clr='d')
+                            buying = 0
+                            break
+            
+                return
+    elif 'sell' in bors:
+        sellitem = None
+        while sellitem != 0:
+            inventory()
+            sellitem = input('What would you like to sell?\n')
+            sellitem = sellitem.strip()
+            sellitem = sellitem.lower()
+            for x in inv:
+                if sellitem in x:
+                    sellitem = x
+            for sublist in globalcost:
+                if sellitem in sublist:
+                    itemcost = globalcost.index(sublist)
+            inv.remove(sellitem)
+            gold += globalcost[itemcost][1]
+            clrprint(sellitem,'sold for',str(globalcost[itemcost][1]),'gold.',clr='r')
+            sellitem = input('Would you like to sell anything else? (y/n)\n')
+            sellitem.strip()
+            sellitem.lower()
+            if 'n' in sellitem:
+                sellitem = 0
+            
+    else:
+        print("I'm afraid that that is not an available option")
+
+def fight():
+    global gold
+    global inv
+    global combatxp
+    global combatmax
+    global combat
+    global playerhp
+    global playerhpmax
+    global enemylootlist
+    global inv
+    enemy = random.choice(['goblin','goblin','goblin','skeleton','skeleton','zombie'])
+    if 'basic sword' or 'sharpened sword' in inv:
+#defining enemy stats
+        if enemy == 'goblin':
+            enemy_danger = 2 - math.ceil(luck/4)
+            enemy_hp = random.randint(5, 10) * enemy_danger - math.ceil(luck/4)
+            enemy_dmg = random.randint(1, 2) * enemy_danger - math.ceil(luck/4)
+            enemy_drop_chance = 1
+            enemyxpdrop = 1
+        elif enemy == 'skeleton':
+            enemy_danger = 3 - math.ceil(luck/4)
+            enemy_hp = random.randint(10, 20) * enemy_danger - math.ceil(luck/4)
+            enemy_dmg = random.randint(1, 5) * enemy_danger - luck
+            enemy_drop_chance = 2
+            enemyxpdrop = 3
+        elif enemy == 'zombie':
+            enemy_danger = 3 - math.ceil(luck/4)
+            enemy_hp = random.randint(10, 20) * enemy_danger - math.ceil(luck/4)
+            enemy_dmg = random.randint(1, 10) * enemy_danger - math.ceil(luck/4)
+            enemy_drop_chance = 3
+            enemyxpdrop = 5
+#fight start func
+        clrprint('You encounter a ' + enemy + '!', clr='d')
+        initiate = input('Would you like to fight or run?\n')
+        initiate = initiate.strip()
+        initiate = initiate.lower()
+        if initiate == 'run':
+            clrprint('You run away',clr='d')
+        elif initiate == 'fight':
+#while the enemy is above 0 hp the fight will continue
+            while enemy_hp > 0:
+                action = input('What will you do? (attack/heal)\n')
+                action = action.strip()
+                action = action.lower()
+                if action == 'attack':
+                    #player dmg defined
+                    dmg = random.randint(1, 10) * combat * math.ceil(luck/4)
+                    enemy_hp -= dmg
+                    clrprint('You hit the ' + enemy + ' for ' + str(dmg) + ' damage!', clr='g')
+                    #if enemy not dead the you will be hit by its attack
+                    if enemy_hp > 0:
+                        enemy_dmg_taken = enemy_dmg
+                        playerhp -= enemy_dmg_taken
+                        clrprint('The ' + enemy + ' hits you for ' + str(enemy_dmg_taken) + ' damage!', clr='r')
+                        clrprint('You are on ' + str(playerhp) + ' health!')
+                elif action == 'heal':
+                    if 'some healing herbs' in inv and playerhp < playerhpmax:
+                        inv.remove('some healing herbs')
+                        hp_gain = random.randint(5, 10)
+                        playerhp += hp_gain
+                        if playerhp > playerhpmax:
+                            playerhp = playerhpmax
+                        clrprint('You heal yourself for ' + str(hp_gain) + ' HP!', clr='g')
+                    elif 'healing potion' in inv and playerhp < playerhpmax:
+                        inv.remove('healing potion')
+                        hp_gain = random.randint(10, 15)
+                        playerhp += hp_gain
+                        if playerhp > playerhpmax:
+                            playerhp = playerhpmax
+                        clrprint('You heal yourself for ' + str(hp_gain) + ' HP!', clr='g')
+                    else:
+                        clrprint('You have no healing herbs or health potions!', clr='r')
+                else:
+                    clrprint("I'm afraid that that is not an available option!", clr='r')
+                if playerhp <= 0:
+                    clrprint('You died!', clr='r')
+                    start()
+            clrprint('You defeated the ' + enemy + '!', clr='g')
+            #loot results for enemy defeat
+            lootchance = random.randint(1,60) * enemy_drop_chance * math.ceil(luck/4)
+            lootresult = enemylootlist[random.randint(0,3)]
+            combatxp = combatxp + (enemyxpdrop * random.randint(1,3))
+            if lootchance > 75 - random.randint(1, 10) - math.ceil(luck/4):
+                clrprint('In the ' + enemy + ', you find '+lootresult+'!',clr='d')
+                if lootresult != 'a empty envelope from their family' or 'an empty money sack':
+                    inv.append(lootresult)
+            elif lootchance > 100 - math.ceil(luck/6):
+                dropped_gold = enemy_drop_chance + math.ceil(luck/4)
+                clrprint('The ' + enemy + ' dropped ' + str(dropped_gold) + ' gold!',clr='y')
+                gold = dropped_gold + gold
+            elif lootchance <= 1:
+                clrprint('The ' + enemy + ' dropped a note ?!',clr='p')
+                suicidenote = input('What would you like to read it?\n')
+                suicidenote.strip()
+                suicidenote.lower()
+                if suicidenote == 'yes':
+                    clrprint('You open the note and read what it says\n','p')
+                    clrprint('"Ive had enough of this life/n Im going to the forest to end my miserable excuse for a life"','p')
+                elif suicidenote == 'no':
+                    clrprint('Very well then','p')
+                else:
+                    clrprint("I'm afraid that that is not an option", clr='p')
+            checklevel()
+        else:
+            clrprint('Im afraid that that is not an option', clr='d')
+    else:
+        clrprint('You dont have the adequate equipment to do this!',clr='d')
+
+start()
